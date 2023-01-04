@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NoBsCoinTosser"
+        android:name=".CoinTosserApplication"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
