@@ -3,6 +3,8 @@ package io.github.lukasprediger.nobscointosser.ui.components.tosser
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -10,18 +12,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.github.lukasprediger.nobscointosser.R
+import io.github.lukasprediger.nobscointosser.ui.components.destinations.SettingsPageDestination
 import io.github.lukasprediger.nobscointosser.ui.theme.AppTheme
 
+@RootNavGraph(start = true)
 @Composable
-fun TosserPage(tosserViewModel: TosserViewModel = viewModel()) {
-    TosserScreen(tosserViewModel.screenState, tosserViewModel::tossCoin)
+@Destination
+fun TosserPage(
+    navigator: DestinationsNavigator,
+    tosserViewModel: TosserViewModel = hiltViewModel()
+) {
+    TosserScreen(tosserViewModel.screenState, tosserViewModel::tossCoin) {
+        navigator.navigate(
+            SettingsPageDestination
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TosserScreen(screenState: TosserScreenState, onButtonPressed: () -> Unit) {
+fun TosserScreen(
+    screenState: TosserScreenState,
+    onScreenTap: () -> Unit,
+    onSettingsButtonClick: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -30,8 +49,15 @@ fun TosserScreen(screenState: TosserScreenState, onButtonPressed: () -> Unit) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                )
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                ),
+                actions = {
+                    IconButton(onClick = onSettingsButtonClick) {
+                        Icon(Icons.Default.Settings, "Open Settings")
+                    }
+                }
             )
         }
     ) { paddingValues ->
@@ -41,7 +67,7 @@ fun TosserScreen(screenState: TosserScreenState, onButtonPressed: () -> Unit) {
             Column(
                 Modifier
                     .fillMaxSize()
-                    .clickable(onClick = onButtonPressed)
+                    .clickable(onClick = onScreenTap)
                     .padding(top = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceEvenly
@@ -72,7 +98,7 @@ enum class CoinResult(@StringRes val stringId: Int) {
 @Composable
 fun TosserScreenInitialPreview() {
     AppTheme {
-        TosserScreen(TosserScreenState.InitialState) {}
+        TosserScreen(TosserScreenState.InitialState, {}) {}
     }
 }
 
@@ -80,7 +106,7 @@ fun TosserScreenInitialPreview() {
 @Composable
 fun TosserScreenLoadingPreview() {
     AppTheme {
-        TosserScreen(TosserScreenState.LoadingState) {}
+        TosserScreen(TosserScreenState.LoadingState, {}) {}
     }
 }
 
@@ -88,6 +114,6 @@ fun TosserScreenLoadingPreview() {
 @Composable
 fun TosserScreenResultPreview() {
     AppTheme {
-        TosserScreen(TosserScreenState.TossedState(CoinResult.HEADS)) {}
+        TosserScreen(TosserScreenState.TossedState(CoinResult.HEADS), {}) {}
     }
 }

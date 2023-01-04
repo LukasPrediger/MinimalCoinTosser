@@ -8,8 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.datastore.preferences.preferencesDataStore
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.lukasprediger.nobscointosser.ui.components.tosser.TosserPage
+import io.github.lukasprediger.nobscointosser.ui.components.NavGraphs
 import io.github.lukasprediger.nobscointosser.ui.theme.AppTheme
 
 val Context.dataStore by preferencesDataStore(name = "settings")
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    TosserPage()
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }
