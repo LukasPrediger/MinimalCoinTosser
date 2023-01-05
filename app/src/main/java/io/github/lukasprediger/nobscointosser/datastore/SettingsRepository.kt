@@ -3,6 +3,7 @@ package io.github.lukasprediger.nobscointosser.datastore
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import dagger.Module
@@ -11,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.lukasprediger.nobscointosser.dataStore
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 @Module
@@ -22,10 +24,13 @@ object SettingsModule {
     }
 }
 
+private fun <T> DataStore<Preferences>.get(key: Preferences.Key<T>, defaultValue: T): Flow<T> =
+    this.data.map { it[key] ?: defaultValue }
+
 class SettingsRepository(private val dataStore: DataStore<Preferences>) {
-    val delay = dataStore.data.map { prefs ->
-        prefs[delayKey] ?: 500
-    }
+    val delay = dataStore.get(delayKey, 500)
+
+    val keepOn = dataStore.get(keepOnKey, true)
 
     suspend fun changeDelay(value: Int) {
         dataStore.edit {
@@ -33,7 +38,14 @@ class SettingsRepository(private val dataStore: DataStore<Preferences>) {
         }
     }
 
+    suspend fun changeKeepOn(keepOn: Boolean) {
+        dataStore.edit {
+            it[keepOnKey] = keepOn
+        }
+    }
+
     companion object {
         private val delayKey = intPreferencesKey("delay")
+        private val keepOnKey = booleanPreferencesKey("keepOn")
     }
 }

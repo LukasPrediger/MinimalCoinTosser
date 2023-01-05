@@ -8,4 +8,6 @@
     <string name="setting_delay_title">Delay</string>
     <string name="setting_delay_description">"The delay between tapping the screen and showing the result. Has no impact on the actual result. Enter 0 to deactivate"</string>
     <string name="setting_delay_error">Please enter a valid, positive Value</string>
+    <string name="setting_keep_on_title">Keep screen active</string>
+    <string name="setting_keep_on_description">Keeps the screen active while the app is open. Will cause increased battery drain</string>
 </resources>

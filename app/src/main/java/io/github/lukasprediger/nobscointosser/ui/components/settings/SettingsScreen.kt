@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -16,14 +17,19 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.github.lukasprediger.nobscointosser.R
 import io.github.lukasprediger.nobscointosser.ui.theme.AppTheme
+import io.github.lukasprediger.nobscointosser.ui.theme.dimensions
 
 @Composable
 @Destination
 fun SettingsPage(navigator: DestinationsNavigator, viewModel: SettingsViewModel = hiltViewModel()) {
+    val keepOn by viewModel.keepOn.collectAsState(true)
+
     SettingsScreen(
         delayText = viewModel.delayText,
         onDelayChange = viewModel::changeDelayText,
-        delayError = viewModel.delayError
+        delayError = viewModel.delayError,
+        keepOn = keepOn,
+        onKeepOnChanged = viewModel::changeKeepOn
     ) { navigator.navigateUp() }
 }
 
@@ -33,7 +39,9 @@ fun SettingsScreen(
     delayText: String,
     onDelayChange: (String) -> Unit,
     delayError: Boolean,
-    onBackButtonClick: () -> Unit,
+    keepOn: Boolean,
+    onKeepOnChanged: (Boolean) -> Unit,
+    onBackButtonClick: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -59,6 +67,26 @@ fun SettingsScreen(
             Modifier.padding(paddingValues)
         ) {
             DurationSettingRow(delayText, onDelayChange, delayError)
+            KeepOnSettingRow(keepOn, onKeepOnChanged)
+        }
+    }
+}
+
+@Composable
+fun KeepOnSettingRow(keepOn: Boolean, onKeepOnChanged: (Boolean) -> Unit) {
+    SettingRow(
+        title = stringResource(R.string.setting_keep_on_title),
+        description = stringResource(R.string.setting_keep_on_description)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.gapL),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Switch(checked = keepOn, onCheckedChange = onKeepOnChanged)
+            Text(
+                stringResource(R.string.setting_keep_on_title),
+                style = MaterialTheme.typography.labelLarge
+            )
         }
     }
 }
@@ -102,7 +130,14 @@ private fun DurationSettingRow(
 @Composable
 fun SettingsScreenPreview() {
     AppTheme {
-        SettingsScreen("0", {}, false) {}
+        SettingsScreen(
+            delayText = "0",
+            onDelayChange = {},
+            delayError = false,
+            keepOn = true,
+            onKeepOnChanged = {},
+            onBackButtonClick = {}
+        )
     }
 }
 
@@ -111,6 +146,13 @@ fun SettingsScreenPreview() {
 @Composable
 fun SettingsScreenErrorPreview() {
     AppTheme {
-        SettingsScreen("", {}, true) {}
+        SettingsScreen(
+            delayText = "",
+            onDelayChange = {},
+            delayError = true,
+            keepOn = true,
+            onKeepOnChanged = {},
+            onBackButtonClick = {}
+        )
     }
 }

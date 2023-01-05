@@ -7,4 +7,6 @@
     <string name="setting_delay_title">Verzögerung</string>
     <string name="setting_delay_error">Bitte gebe eine gültige, positive Nummer ein</string>
     <string name="setting_delay_description">Die Verzögerung zwischen dem Antippen des Bildschirms und der Anzeige des Ergebnises. Hat keine Auswirkung auf das Ergebnis. 0 zum deaktivieren</string>
+    <string name="setting_keep_on_title">Bildschirm aktiv lassen</string>
+    <string name="setting_keep_on_description">Lässt dem Bildschirm aktiv. Leert die Batterie schneller</string>
 </resources>
