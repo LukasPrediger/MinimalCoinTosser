@@ -3,5 +3,9 @@
     <string name="tosser_screen_open_title">Tap screen to toss coin</string>
     <string name="tosser_screen_heads">HEADS</string>
     <string name="tosser_screen_tails">TAILS</string>
+
     <string name="setting_title">Settings</string>
+    <string name="setting_delay_title">Delay</string>
+    <string name="setting_delay_description">"The delay between tapping the screen and showing the result. Has no impact on the actual result. Enter 0 to deactivate"</string>
+    <string name="setting_delay_error">Please enter a valid, positive Value</string>
 </resources>

@@ -17,7 +17,7 @@ import kotlin.time.Duration.Companion.milliseconds
 
 @HiltViewModel
 class TosserViewModel @Inject constructor(settingsRepository: SettingsRepository) : ViewModel() {
-    private val delay = settingsRepository.duration.stateIn(viewModelScope, SharingStarted.Eagerly, 500.milliseconds)
+    private val delay = settingsRepository.delay.stateIn(viewModelScope, SharingStarted.Eagerly, 500)
 
     var screenState by mutableStateOf<TosserScreenState>(TosserScreenState.InitialState)
         private set
@@ -27,7 +27,7 @@ class TosserViewModel @Inject constructor(settingsRepository: SettingsRepository
 
         viewModelScope.launch {
             screenState = TosserScreenState.LoadingState
-            delay(delay.value)
+            delay(delay.value.milliseconds)
             screenState = TosserScreenState.TossedState(
                 if (Random.nextBoolean()) CoinResult.HEADS
                 else CoinResult.TAILS
