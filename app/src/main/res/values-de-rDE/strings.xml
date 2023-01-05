@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tosser_screen_open_title">Antippen um Münze zu werden</string>
+    <string name="tosser_screen_heads">KOPF</string>
+    <string name="tosser_screen_tails">ZAHL</string>
+    <string name="setting_title">Einstellungen</string>
+    <string name="setting_delay_title">Verzögerung</string>
+    <string name="setting_delay_error">Bitte gebe eine gültige, positive Nummer ein</string>
+    <string name="setting_delay_description">Die Verzögerung zwischen dem Antippen des Bildschirms und der Anzeige des Ergebnises. Hat keine Auswirkung auf das Ergebnis. 0 zum deaktivieren</string>
+</resources>
