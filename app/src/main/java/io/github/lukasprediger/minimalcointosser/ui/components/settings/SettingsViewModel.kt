@@ -1,16 +1,13 @@
-package io.github.lukasprediger.nobscointosser.ui.components.settings
+package io.github.lukasprediger.minimalcointosser.ui.components.settings
 
 import android.annotation.SuppressLint
-import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ActivityContext
-import io.github.lukasprediger.nobscointosser.MainActivity
-import io.github.lukasprediger.nobscointosser.datastore.SettingsRepository
+import io.github.lukasprediger.minimalcointosser.datastore.SettingsRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject

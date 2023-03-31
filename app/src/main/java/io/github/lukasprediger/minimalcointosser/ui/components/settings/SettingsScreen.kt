@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser.ui.components.settings
+package io.github.lukasprediger.minimalcointosser.ui.components.settings
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -15,9 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import io.github.lukasprediger.nobscointosser.R
-import io.github.lukasprediger.nobscointosser.ui.theme.AppTheme
-import io.github.lukasprediger.nobscointosser.ui.theme.dimensions
+import io.github.lukasprediger.minimalcointosser.R
+import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
+import io.github.lukasprediger.minimalcointosser.ui.theme.dimensions
 
 @Composable
 @Destination
@@ -118,7 +118,12 @@ private fun DurationSettingRow(
             visualTransformation = {
                 TransformedText(
                     it + AnnotatedString(" ms"),
-                    OffsetMapping.Identity
+                    object: OffsetMapping {
+                        override fun originalToTransformed(offset: Int): Int = offset.coerceIn(0..it.length)
+
+                        override fun transformedToOriginal(offset: Int): Int = offset.coerceIn(0..it.length)
+
+                    }
                 )
             }
         )

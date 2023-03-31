@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser.ui.components.settings
+package io.github.lukasprediger.minimalcointosser.ui.components.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -11,8 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.lukasprediger.nobscointosser.ui.theme.AppTheme
-import io.github.lukasprediger.nobscointosser.ui.theme.dimensions
+import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
+import io.github.lukasprediger.minimalcointosser.ui.theme.dimensions
 
 @Composable
 fun SettingRow(title: String, description: String, content: @Composable ColumnScope.() -> Unit) {

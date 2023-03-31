@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">NoBs Coin Tosser</string>
+    <string name="app_name" translatable="false">Minimal Coin Tosser</string>
     <string name="tosser_screen_open_title">Tap screen to toss coin</string>
     <string name="tosser_screen_heads">HEADS</string>
     <string name="tosser_screen_tails">TAILS</string>

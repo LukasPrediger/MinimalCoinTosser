@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser.ui.theme
+package io.github.lukasprediger.minimalcointosser.ui.theme
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

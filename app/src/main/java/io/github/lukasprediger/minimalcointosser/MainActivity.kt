@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser
+package io.github.lukasprediger.minimalcointosser
 
 import android.content.Context
 import android.os.Bundle
@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.datastore.preferences.preferencesDataStore
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.lukasprediger.nobscointosser.datastore.SettingsRepository
-import io.github.lukasprediger.nobscointosser.ui.components.NavGraphs
-import io.github.lukasprediger.nobscointosser.ui.theme.AppTheme
+import io.github.lukasprediger.minimalcointosser.datastore.SettingsRepository
+import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
 import javax.inject.Inject
+import io.github.lukasprediger.minimalcointosser.ui.components.NavGraphs
 
 val Context.dataStore by preferencesDataStore(name = "settings")
 

@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser.ui.components.tosser
+package io.github.lukasprediger.minimalcointosser.ui.components.tosser
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
@@ -16,9 +16,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import io.github.lukasprediger.nobscointosser.R
-import io.github.lukasprediger.nobscointosser.ui.components.destinations.SettingsPageDestination
-import io.github.lukasprediger.nobscointosser.ui.theme.AppTheme
+import io.github.lukasprediger.minimalcointosser.R
+import io.github.lukasprediger.minimalcointosser.ui.components.destinations.SettingsPageDestination
+import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
 
 @RootNavGraph(start = true)
 @Composable

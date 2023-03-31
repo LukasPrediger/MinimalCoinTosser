@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser.ui.components.tosser
+package io.github.lukasprediger.minimalcointosser.ui.components.tosser
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.lukasprediger.nobscointosser.datastore.SettingsRepository
+import io.github.lukasprediger.minimalcointosser.datastore.SettingsRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn

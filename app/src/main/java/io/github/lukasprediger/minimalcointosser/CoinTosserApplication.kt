@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser
+package io.github.lukasprediger.minimalcointosser
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

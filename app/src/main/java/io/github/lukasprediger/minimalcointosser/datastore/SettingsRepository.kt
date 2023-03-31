@@ -1,4 +1,4 @@
-package io.github.lukasprediger.nobscointosser.datastore
+package io.github.lukasprediger.minimalcointosser.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -11,7 +11,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import io.github.lukasprediger.nobscointosser.dataStore
+import io.github.lukasprediger.minimalcointosser.dataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
