@@ -1,7 +1,7 @@
 package io.github.lukasprediger.minimalcointosser.ui.components.settings
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -65,11 +65,12 @@ fun SettingsScreen(
             )
         }
     ) { paddingValues ->
-        Column(
+        LazyColumn(
             Modifier.padding(paddingValues)
         ) {
-            DurationSettingRow(delayText, onDelayChange, delayError)
-            KeepOnSettingRow(keepOn, onKeepOnChanged)
+            item { DurationSettingRow(delayText, onDelayChange, delayError) }
+            item { KeepOnSettingRow(keepOn, onKeepOnChanged) }
+            item { AboutSection() }
         }
     }
 }
@@ -120,10 +121,12 @@ private fun DurationSettingRow(
             visualTransformation = {
                 TransformedText(
                     it + AnnotatedString(" ms"),
-                    object: OffsetMapping {
-                        override fun originalToTransformed(offset: Int): Int = offset.coerceIn(0..it.length)
+                    object : OffsetMapping {
+                        override fun originalToTransformed(offset: Int): Int =
+                            offset.coerceIn(0..it.length)
 
-                        override fun transformedToOriginal(offset: Int): Int = offset.coerceIn(0..it.length)
+                        override fun transformedToOriginal(offset: Int): Int =
+                            offset.coerceIn(0..it.length)
 
                     }
                 )
