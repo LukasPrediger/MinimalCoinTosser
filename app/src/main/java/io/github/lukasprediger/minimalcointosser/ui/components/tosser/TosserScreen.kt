@@ -17,6 +17,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.github.lukasprediger.minimalcointosser.R
+import io.github.lukasprediger.minimalcointosser.ui.components.common.ScreenPreviews
 import io.github.lukasprediger.minimalcointosser.ui.components.destinations.SettingsPageDestination
 import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
 
@@ -28,9 +29,7 @@ fun TosserPage(
     tosserViewModel: TosserViewModel = hiltViewModel()
 ) {
     TosserScreen(tosserViewModel.screenState, tosserViewModel::tossCoin) {
-        navigator.navigate(
-            SettingsPageDestination
-        )
+        navigator.navigate(SettingsPageDestination)
     }
 }
 
@@ -94,7 +93,7 @@ enum class CoinResult(@StringRes val stringId: Int) {
     HEADS(R.string.tosser_screen_heads), TAILS(R.string.tosser_screen_tails);
 }
 
-@Preview(widthDp = 340, heightDp = 560, showBackground = true)
+@ScreenPreviews
 @Composable
 fun TosserScreenInitialPreview() {
     AppTheme {

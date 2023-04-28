@@ -1,5 +1,6 @@
 package io.github.lukasprediger.minimalcointosser.ui.components.settings
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -16,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.github.lukasprediger.minimalcointosser.R
+import io.github.lukasprediger.minimalcointosser.ui.components.common.ScreenPreviews
 import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
 import io.github.lukasprediger.minimalcointosser.ui.theme.dimensions
 
@@ -131,7 +133,7 @@ private fun DurationSettingRow(
 }
 
 
-@Preview(widthDp = 340, heightDp = 560, showBackground = true)
+@ScreenPreviews
 @Composable
 fun SettingsScreenPreview() {
     AppTheme {
