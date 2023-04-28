@@ -22,7 +22,7 @@ import io.github.lukasprediger.minimalcointosser.ui.components.NavGraphs
 val Context.dataStore by preferencesDataStore(name = "settings")
 
 @AndroidEntryPoint
-class MainActivity() : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     @Inject lateinit var settingsRepository: SettingsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
