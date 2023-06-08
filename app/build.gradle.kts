@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +7,20 @@ plugins {
     id("kotlin-kapt")
     id("com.google.devtools.ksp")
 }
+
+object AppVersion {
+    val major: Int = 0
+    val minor: Int = 1
+    val patch: Int = 0
+
+    val versionCode: Int
+        get() = major*10000 + minor * 100 + patch
+
+    fun versionName(useDots: Boolean = true) =
+        listOf(major, minor, patch).joinToString(if (useDots) "." else "-")
+}
+
+archivesName.set("minimalcountosser-${AppVersion.versionName(false)}")
 
 android {
     namespace = "io.github.lukasprediger.minimalcointosser"
@@ -14,8 +30,8 @@ android {
         applicationId = "io.github.lukasprediger.minimalcointosser"
         minSdk = 26
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = AppVersion.versionCode
+        versionName = AppVersion.versionName()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
