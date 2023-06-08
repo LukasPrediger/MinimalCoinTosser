@@ -1,5 +1,6 @@
 package io.github.lukasprediger.minimalcointosser.ui.components.tosser
 
+import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -101,7 +102,7 @@ fun TosserScreenInitialPreview() {
     }
 }
 
-@Preview(widthDp = 340, heightDp = 560, showBackground = true)
+@Preview(device = "id:pixel_6_pro", name = "Pixel6Pro Day", group = "Pixel 6 Pro", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun TosserScreenLoadingPreview() {
     AppTheme {
@@ -109,7 +110,7 @@ fun TosserScreenLoadingPreview() {
     }
 }
 
-@Preview(widthDp = 340, heightDp = 560, showBackground = true)
+@Preview(device = "id:pixel_6_pro", name = "Pixel6Pro Day", group = "Pixel 6 Pro", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun TosserScreenResultPreview() {
     AppTheme {
