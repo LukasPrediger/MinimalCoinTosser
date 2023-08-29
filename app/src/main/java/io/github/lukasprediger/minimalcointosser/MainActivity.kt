@@ -9,10 +9,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.lukasprediger.minimalcointosser.datastore.SettingsRepository
@@ -33,8 +33,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            val keepOn by settingsRepository.keepOn.collectAsState(initial = true)
-            val theme by settingsRepository.theme.collectAsState(initial = Theme.SYSTEM)
+            val keepOn by settingsRepository.keepOn.collectAsStateWithLifecycle(true)
+            val theme by settingsRepository.theme.collectAsStateWithLifecycle(Theme.SYSTEM)
 
             LaunchedEffect(keepOn) {
                 if (keepOn) {

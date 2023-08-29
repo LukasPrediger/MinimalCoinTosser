@@ -9,4 +9,8 @@
     <string name="setting_delay_description">Die Verzögerung zwischen dem Antippen des Bildschirms und der Anzeige des Ergebnises. Hat keine Auswirkung auf das Ergebnis. 0 zum deaktivieren</string>
     <string name="setting_keep_on_title">Bildschirm aktiv lassen</string>
     <string name="setting_keep_on_description">Lässt dem Bildschirm aktiv. Leert die Batterie schneller</string>
+    <string name="setting_theme_light">Hell</string>
+    <string name="setting_theme_dark">Dunkel</string>
+    <string name="setting_theme_system">Benutze Systemeinstellungen</string>
+    <string name="setting_theme_description">Wähle das bevorzugte Design der App aus</string>
 </resources>

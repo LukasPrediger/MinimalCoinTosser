@@ -9,9 +9,9 @@ plugins {
 }
 
 object AppVersion {
-    val major: Int = 0
-    val minor: Int = 1
-    val patch: Int = 0
+    private const val major: Int = 0
+    private const val minor: Int = 1
+    private const val patch: Int = 0
 
     val versionCode: Int
         get() = major*10000 + minor * 100 + patch
@@ -24,12 +24,12 @@ archivesName.set("minimalcountosser-${AppVersion.versionName(false)}")
 
 android {
     namespace = "io.github.lukasprediger.minimalcointosser"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "io.github.lukasprediger.minimalcointosser"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = AppVersion.versionCode
         versionName = AppVersion.versionName()
 
@@ -42,7 +42,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            @Suppress("UnstableApiUsage")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 File("proguard-rules.pro")
@@ -57,12 +56,11 @@ android {
         jvmTarget = JavaVersion.VERSION_17.majorVersion
     }
 
-    @Suppress("UnstableApiUsage")
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
@@ -83,19 +81,23 @@ kapt {
 }
 
 dependencies {
-    val composeVersion = "1.5.0-alpha03"
+    val composeVersion = "1.5.0"
+    val lifecycle = "2.6.1"
+    val hilt = 2.47
 
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.compose.material3:material3:1.1.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.compose.material3:material3:1.1.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:${lifecycle}")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:$hilt")
+    kapt("com.google.dagger:hilt-compiler:$hilt")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     implementation("io.github.raamcosta.compose-destinations:core:1.7.30-beta")

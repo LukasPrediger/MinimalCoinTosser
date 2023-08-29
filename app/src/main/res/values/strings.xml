@@ -11,7 +11,7 @@
     <string name="setting_keep_on_title">Keep screen active</string>
     <string name="setting_keep_on_description">Keeps the screen active while the app is open. Will cause increased battery drain</string>
 
-    <string name="setting_theme_title">App Theme</string>
+    <string name="setting_theme_title" translatable="false">App Theme</string>
     <string name="setting_theme_description">Use this to customize the apps theme</string>
     <string name="setting_theme_light">Light</string>
     <string name="setting_theme_dark">Dark</string>

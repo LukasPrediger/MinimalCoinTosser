@@ -14,6 +14,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.github.lukasprediger.minimalcointosser.R
@@ -25,8 +26,8 @@ import io.github.lukasprediger.minimalcointosser.ui.theme.dimensions
 @Composable
 @Destination
 fun SettingsPage(navigator: DestinationsNavigator, viewModel: SettingsViewModel = hiltViewModel()) {
-    val keepOn by viewModel.keepOn.collectAsState(true)
-    val theme by viewModel.theme.collectAsState(Theme.SYSTEM)
+    val keepOn by viewModel.keepOn.collectAsStateWithLifecycle(true)
+    val theme by viewModel.theme.collectAsStateWithLifecycle(Theme.SYSTEM)
 
     SettingsScreen(
         delayText = viewModel.delayText,

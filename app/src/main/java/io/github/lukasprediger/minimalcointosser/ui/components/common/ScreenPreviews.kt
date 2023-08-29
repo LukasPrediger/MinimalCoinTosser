@@ -10,4 +10,4 @@ import androidx.compose.ui.tooling.preview.Preview
 @Preview(device = "spec:width=1280dp,height=800dp,dpi=480", name = "Tablet Night", group = "Tablet", uiMode = UI_MODE_NIGHT_YES)
 @Preview(device = "spec:width=411dp,height=891dp", name = "Phone Day", group = "Phone", uiMode = UI_MODE_NIGHT_NO)
 @Preview(device = "spec:width=411dp,height=891dp", name = "Phone Night", group = "Phone", uiMode = UI_MODE_NIGHT_YES)
-annotation class ScreenPreviews()
+annotation class ScreenPreviews
