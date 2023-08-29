@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.lukasprediger.minimalcointosser.datastore.SettingsRepository
+import io.github.lukasprediger.minimalcointosser.datastore.Theme
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,6 +25,7 @@ class SettingsViewModel @Inject constructor(
         private set
 
     val keepOn = settingsRepository.keepOn
+    val theme = settingsRepository.theme
 
     init {
         viewModelScope.launch {
@@ -47,6 +49,12 @@ class SettingsViewModel @Inject constructor(
     fun changeKeepOn(keepOn: Boolean) {
         viewModelScope.launch {
             settingsRepository.changeKeepOn(keepOn)
+        }
+    }
+
+    fun changeTheme(theme: Theme) {
+        viewModelScope.launch {
+            settingsRepository.changeTheme(theme)
         }
     }
 }

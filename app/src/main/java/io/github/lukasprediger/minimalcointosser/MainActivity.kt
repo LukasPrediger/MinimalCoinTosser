@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
@@ -15,15 +16,17 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.lukasprediger.minimalcointosser.datastore.SettingsRepository
+import io.github.lukasprediger.minimalcointosser.datastore.Theme
+import io.github.lukasprediger.minimalcointosser.ui.components.NavGraphs
 import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
 import javax.inject.Inject
-import io.github.lukasprediger.minimalcointosser.ui.components.NavGraphs
 
 val Context.dataStore by preferencesDataStore(name = "settings")
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject lateinit var settingsRepository: SettingsRepository
+    @Inject
+    lateinit var settingsRepository: SettingsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,8 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val keepOn by settingsRepository.keepOn.collectAsState(initial = true)
+            val theme by settingsRepository.theme.collectAsState(initial = Theme.SYSTEM)
+
             LaunchedEffect(keepOn) {
                 if (keepOn) {
                     window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -39,8 +44,14 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
+            val usesDarkTheme = when (theme) {
+                Theme.LIGHT -> false
+                Theme.DARK -> true
+                Theme.SYSTEM -> isSystemInDarkTheme()
+            }
 
-            AppTheme {
+
+            AppTheme(usesDarkTheme) {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {

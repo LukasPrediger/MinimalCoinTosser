@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.github.lukasprediger.minimalcointosser.R
+import io.github.lukasprediger.minimalcointosser.datastore.Theme
 import io.github.lukasprediger.minimalcointosser.ui.components.common.ScreenPreviews
 import io.github.lukasprediger.minimalcointosser.ui.theme.AppTheme
 import io.github.lukasprediger.minimalcointosser.ui.theme.dimensions
@@ -25,13 +26,16 @@ import io.github.lukasprediger.minimalcointosser.ui.theme.dimensions
 @Destination
 fun SettingsPage(navigator: DestinationsNavigator, viewModel: SettingsViewModel = hiltViewModel()) {
     val keepOn by viewModel.keepOn.collectAsState(true)
+    val theme by viewModel.theme.collectAsState(Theme.SYSTEM)
 
     SettingsScreen(
         delayText = viewModel.delayText,
         onDelayChange = viewModel::changeDelayText,
         delayError = viewModel.delayError,
         keepOn = keepOn,
-        onKeepOnChanged = viewModel::changeKeepOn
+        onKeepOnChanged = viewModel::changeKeepOn,
+        theme = theme,
+        onThemeChanged = viewModel::changeTheme
     ) { navigator.navigateUp() }
 }
 
@@ -43,6 +47,8 @@ fun SettingsScreen(
     delayError: Boolean,
     keepOn: Boolean,
     onKeepOnChanged: (Boolean) -> Unit,
+    theme: Theme,
+    onThemeChanged: (Theme) -> Unit,
     onBackButtonClick: () -> Unit
 ) {
     Scaffold(
@@ -70,6 +76,7 @@ fun SettingsScreen(
         ) {
             item { DurationSettingRow(delayText, onDelayChange, delayError) }
             item { KeepOnSettingRow(keepOn, onKeepOnChanged) }
+            item { ThemeSettingRow(theme, onThemeChanged) }
             item { AboutSection() }
         }
     }
@@ -95,7 +102,6 @@ fun KeepOnSettingRow(keepOn: Boolean, onKeepOnChanged: (Boolean) -> Unit) {
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 private fun DurationSettingRow(
     delayText: String,
     onDelayChange: (String) -> Unit,
@@ -135,6 +141,24 @@ private fun DurationSettingRow(
     }
 }
 
+@Composable
+private fun ThemeSettingRow(
+    selectedTheme: Theme,
+    onSelectionChanged: (Theme) -> Unit
+) {
+    SettingRow(
+        title = stringResource(R.string.setting_theme_title),
+        description = stringResource(R.string.setting_theme_description)
+    ) {
+        Theme.values().forEach {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(selected = selectedTheme == it, onClick = { onSelectionChanged(it) })
+                Text(stringResource(it.titleString))
+            }
+        }
+    }
+}
+
 
 @ScreenPreviews
 @Composable
@@ -146,7 +170,9 @@ fun SettingsScreenPreview() {
             delayError = false,
             keepOn = true,
             onKeepOnChanged = {},
-            onBackButtonClick = {}
+            onBackButtonClick = {},
+            theme = Theme.SYSTEM,
+            onThemeChanged = {}
         )
     }
 }
@@ -162,7 +188,9 @@ fun SettingsScreenErrorPreview() {
             delayError = true,
             keepOn = true,
             onKeepOnChanged = {},
-            onBackButtonClick = {}
+            onBackButtonClick = {},
+            theme = Theme.SYSTEM,
+            onThemeChanged = {}
         )
     }
 }
