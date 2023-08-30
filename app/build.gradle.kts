@@ -101,7 +101,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     implementation("io.github.raamcosta.compose-destinations:core:1.7.30-beta")
-    ksp("io.github.raamcosta.compose-destinations:ksp:1.7.30-beta")
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.9.52")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
