@@ -37,7 +37,7 @@ private fun <T> DataStore<Preferences>.get(key: Preferences.Key<T>, defaultValue
     this.data.map { it[key] ?: defaultValue }
 
 class SettingsRepository(private val dataStore: DataStore<Preferences>) {
-    val delay = dataStore.get(delayKey, 500)
+    val delay = dataStore.get(delayKey, 300)
 
     val keepOn = dataStore.get(keepOnKey, true)
 
