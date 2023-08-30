@@ -117,6 +117,7 @@ private fun DurationSettingRow(
             onValueChange = onDelayChange,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             isError = delayError,
+            singleLine = true,
             supportingText = {
                 if (delayError) {
                     Text(
