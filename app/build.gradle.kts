@@ -10,7 +10,7 @@ plugins {
 
 object AppVersion {
     private const val major: Int = 0
-    private const val minor: Int = 1
+    private const val minor: Int = 2
     private const val patch: Int = 0
 
     val versionCode: Int
