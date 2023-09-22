@@ -11,7 +11,7 @@ plugins {
 object AppVersion {
     private const val major: Int = 0
     private const val minor: Int = 2
-    private const val patch: Int = 0
+    private const val patch: Int = 1
 
     val versionCode: Int
         get() = major*10000 + minor * 100 + patch
@@ -28,7 +28,7 @@ android {
 
     defaultConfig {
         applicationId = "io.github.lukasprediger.minimalcointosser"
-        minSdk = 26
+        minSdk = 21
         targetSdk = 34
         versionCode = AppVersion.versionCode
         versionName = AppVersion.versionName()
@@ -81,19 +81,19 @@ kapt {
 }
 
 dependencies {
-    val composeVersion = "1.5.0"
-    val lifecycle = "2.6.1"
+    val composeVersion = "1.5.1"
+    val lifecycle = "2.6.2"
     val hilt = 2.47
 
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.compose.material3:material3:1.1.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:${lifecycle}")
+    implementation("androidx.compose.material3:material3:1.1.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycle")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     implementation("com.google.dagger:hilt-android:$hilt")

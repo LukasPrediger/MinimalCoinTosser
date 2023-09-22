@@ -85,8 +85,8 @@ fun TosserScreen(
 }
 
 sealed class TosserScreenState {
-    object InitialState : TosserScreenState()
-    object LoadingState : TosserScreenState()
+    data object InitialState : TosserScreenState()
+    data object LoadingState : TosserScreenState()
     data class TossedState(val result: CoinResult) : TosserScreenState()
 }
 
