@@ -100,7 +100,7 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:$hilt")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
-    implementation("io.github.raamcosta.compose-destinations:core:1.9.52")
+    implementation("io.github.raamcosta.compose-destinations:core:1.9.55")
     ksp("io.github.raamcosta.compose-destinations:ksp:1.9.52")
 
     testImplementation("junit:junit:4.13.2")
