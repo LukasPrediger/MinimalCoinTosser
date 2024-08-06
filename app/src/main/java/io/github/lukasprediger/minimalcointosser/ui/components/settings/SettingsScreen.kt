@@ -78,6 +78,11 @@ fun SettingsScreen(
             item { DurationSettingRow(delayText, onDelayChange, delayError) }
             item { KeepOnSettingRow(keepOn, onKeepOnChanged) }
             item { ThemeSettingRow(theme, onThemeChanged) }
+            item { SettingRow(title = "The button", description = "Do not press") {
+                Button(onClick = { throw Exception("He pressed the button!") }) {
+                    Text("The button")
+                }
+            } }
             item { AboutSection() }
         }
     }

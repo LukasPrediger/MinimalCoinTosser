@@ -28,7 +28,7 @@ android {
 
     defaultConfig {
         applicationId = "io.github.lukasprediger.minimalcointosser"
-        minSdk = 21
+        minSdk = 26
         targetSdk = 34
         versionCode = AppVersion.versionCode
         versionName = AppVersion.versionName()
@@ -83,7 +83,8 @@ kapt {
 dependencies {
     val composeVersion = "1.5.1"
     val lifecycle = "2.6.2"
-    val hilt = 2.47
+    val hilt = "2.47"
+    val acraVersion = "5.11.2"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -96,6 +97,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycle")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    //Acra Reporting
+    implementation("ch.acra:acra-mail:$acraVersion")
+    implementation("ch.acra:acra-dialog:$acraVersion")
+
     implementation("com.google.dagger:hilt-android:$hilt")
     kapt("com.google.dagger:hilt-compiler:$hilt")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
@@ -104,6 +109,8 @@ dependencies {
     ksp("io.github.raamcosta.compose-destinations:ksp:1.9.52")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("io.appium:java-client:8.5.1")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
